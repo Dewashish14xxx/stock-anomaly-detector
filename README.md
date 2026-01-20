@@ -2,7 +2,7 @@
 
 > A personal project I built to learn about stock market analysis, machine learning forecasting, and real-time dashboards!
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit)](https://dewashish14xxx-stock-anomaly-detector.streamlit.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit)](https://stock-anomaly-detector-r5u95r5p6fgde4ssrfd2ox.streamlit.app/)
 [![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square)](https://python.org)
 [![Prophet](https://img.shields.io/badge/ML-Prophet-purple?style=flat-square)](https://facebook.github.io/prophet/)
 
@@ -17,7 +17,7 @@ This is a **stock market monitoring tool** that I built to detect unusual price 
 
 ## 🌐 Try It Live!
 
-👉 **[Click here to see the live demo!](https://dewashish14xxx-stock-anomaly-detector.streamlit.app)**
+👉 **[Click here to see the live demo!](https://stock-anomaly-detector-r5u95r5p6fgde4ssrfd2ox.streamlit.app/)**
 
 No installation needed - just open the link and start exploring stocks!
 
