@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: stock-anomaly-detector
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - STOCK_TICKERS=${STOCK_TICKERS:-AAPL,GOOGL,MSFT,TSLA}
+      - FETCH_INTERVAL_MINUTES=${FETCH_INTERVAL_MINUTES:-5}
+      - ZSCORE_THRESHOLD=${ZSCORE_THRESHOLD:-3.0}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8501/_stcore/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  scheduler:
+    build: .
+    container_name: stock-anomaly-scheduler
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - STOCK_TICKERS=${STOCK_TICKERS:-AAPL,GOOGL,MSFT,TSLA}
+      - FETCH_INTERVAL_MINUTES=${FETCH_INTERVAL_MINUTES:-5}
+    command: python -m src.scheduler
+    restart: unless-stopped
+    depends_on:
+      - app
+
+volumes:
+  data:
+  logs:
